@@ -41,7 +41,8 @@
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "node --import tsx tests/smoke.e2e.ts"
+    "test": "node --import tsx tests/smoke.e2e.ts",
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "@deepseek-ai/cordis": "^4.0.1",
