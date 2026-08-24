@@ -196,3 +196,9 @@ npm test                       # node --import tsx tests/smoke.e2e.ts
 
 MIT — 见 `LICENSE`。参考的上游项目（anthropics claude-plugins-official 等）
 为 Proprietary，本插件仅参考其形态，未拷贝其源码正文。
+
+## 权限、失败边界与 DSH STORE 状态
+
+- [PERMISSIONS.md](./PERMISSIONS.md)：运行时读取面 / 命令面（固定 argv，非 shell）/ 写面 / 外部服务 / 失败边界 / 供应链 / 文件权限信号（无 chmod/chown、644、无 setuid/setgid）。
+- [docs/store-evidence.md](./docs/store-evidence.md)：一次性 Profile 安装 → 启动（工具注册清单）→ 卸载步骤、本地离线证据、待宿主补录真实运行记录说明，并逐项回应 DSH STORE 五类审查信号（仓库 canonical 匹配 / Node 声明 / 供应链 / 文件权限 / 命令权限）。
+- STORE 复检由 dsh-safe-plugin-manager 每 3 小时自动执行；本仓库已按清单契约声明（package.json 的 `repository` / `engines.node` / `dsh.compatibility` / `dsh.permissions`）。

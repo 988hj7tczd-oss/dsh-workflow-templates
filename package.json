@@ -23,7 +23,7 @@
     "LICENSE"
   ],
   "engines": {
-    "node": ">=20"
+    "node": ">=22.18.0"
   },
   "keywords": [
     "dsh",
@@ -36,6 +36,28 @@
   "dsh": {
     "bundle": {
       "patch": "./cordis.yml"
+    },
+    "compatibility": {
+      "node": ">=22.18.0",
+      "dsh": ">=0.1.0"
+    },
+    "permissions": {
+      "summary": "预置 workflow 模板库：wf_template_list/search/run/validate 四个工具，模板内容交给官方 workflow 工具发起；模板格式静态校验。不执行模板脚本本身，仅交官方 workflow 引擎。",
+      "commands": [
+        "node <pkg>/lib/*.js (template list/search/validate in-process)",
+        "官方 workflow 工具发起（宿主）"
+      ],
+      "writePaths": [
+        "（无；仅读模板与输出渲染）"
+      ],
+      "externalServices": [],
+      "failureBoundaries": [
+        "模板静态校验失败报错",
+        "workflow 工具不可见时提示"
+      ],
+      "lifecycleEvidence": [
+        "全部断言通过（12 模板 INDEX 一致）"
+      ]
     }
   },
   "scripts": {
@@ -61,5 +83,9 @@
     "onlyBuiltDependencies": [
       "esbuild"
     ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/988hj7tczd-oss/dsh-workflow-templates.git"
   }
 }
