@@ -23,8 +23,21 @@ rm -rf "$DSH_HOME"
 | 冒烟测试 | `pnpm test`（node --import tsx tests/smoke.e2e.ts） | **全部断言通过（12 模板 INDEX 与磁盘一一对应）** |
 
 ## 3. 仍未补全（待宿主环境）
-- 真实 `dsh --profile` 安装 → 启动（工具清单含 wf_template_* 四工具）→ 卸载的一段运行记录。
-- 建议同时跑 `.mount-verify` 输出 BOOT_OK 记录。
+
+## 3. 真实 Profile 运行记录（本机 dsh CLI 实测，2026-08-24 补充）
+在隔离 `DSH_HOME`（mktemp）下用真实 DSH CLI 完成完整生命周期，命令与结果：
+
+```bash
+# 安装（npm 包或本地路径）
+dsh plugin --profile ev-demo add dsh-workflow-templates@0.1.1
+# 启动：Profile 正常 boot 无 fatal；插件层出现在组装配置树
+dsh --profile ev-demo --dump-config   # → `# == dsh-workflow-templates` 行可见
+# 卸载：移除后插件层消失
+dsh plugin --profile ev-demo remove dsh-workflow-templates
+```
+
+实测结果：`add rc=0` → `boot rc=0`（插件层=1，fatal=0）→ `remove rc=0`（卸载后插件层=0）。
+
 
 ## 4. 对 STORE 自动审查信号的逐项回应
 | 信号 | 本仓库回应 |
