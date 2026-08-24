@@ -1,0 +1,18 @@
+# dsh-workflow-templates 组合入口（Cordis patch 形态）。
+#
+# 直接挂载：把本文件交给 Loader——profile 的 dsh.profile.bundles 层、--patch overlay，
+# 或任何应用 patch 的入口（package.json 的 dsh.bundle.patch 也指向本文件）。
+#
+# 两种挂载模式：
+#  1. 【已安装/发布态（默认，本文件即此态）】name 用裸包名 'dsh-workflow-templates'；
+#     loader 经 node_modules 解析到包，入口按 package.json 的 main（lib/index.js，
+#     src 已编译为 lib）。产物随包发布（package.json files 含 lib/）。
+#  2. 【开发态（源码 checkout）】把下面 name 改为相对路径 './src/index.ts'，
+#     由 loader/tsx 直接处理 TS 源码（仅内部开发/测试环境可用；相对路径经
+#     loader baseUrl 解析并做 .ts→.js 重写，纯 Node 生产挂载不会有 src/index.js）。
+- insert:
+    - id: workflow-templates
+      name: 'dsh-workflow-templates'
+      config:
+        # 官方 workflow 工具名（默认 workflow），用于"工具未启用"探测与起点提示。
+        workflowToolName: workflow
