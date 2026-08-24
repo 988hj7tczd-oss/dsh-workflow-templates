@@ -1,9 +1,9 @@
 node_modules/
-lib/
+/lib/
 *.tsbuildinfo
 .DS_Store
 .pnpm-store/
-dist/
+/dist/
 *.log
 .mount-verify/
 coverage/
